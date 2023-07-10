@@ -1,0 +1,17 @@
+{
+    "name": "anh/pokemon_battle",
+    "autoload": {
+        "psr-4": {
+            "Anh\\PokemonBattle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pizzatowns",
+            "email": "pizzatownsongo@gmail.com"
+        }
+    ],
+    "require": {
+        "ramsey/uuid": "^4.7"
+    }
+}

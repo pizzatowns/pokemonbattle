@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="index.js"></script>
+    <title>Pokemon Battle</title>
+</head>
+
+<body>
+    <div class="relative h-screen w-screen justify-center items-center bg-cover bg-no-repeat bg-center"
+        style="background-image: url(images/arena.jpg)">
+        <div class="flex flex-col h-full w-full p-5 justify-between">
+            <div class="flex flex-row w-full justify-between text-[2rem]">
+                <span class="">Turn 1</span>
+                <!-- Player 2 -->
+                <div class="flex flex-row space-x-1 items-center text-[2rem] drop-shadow-xl ">
+                    <div class="h-[70px] w-[70px] rounded-full border-2 bg-contain bg-no-repeat bg-center bg-slate-900/90"
+                        style="background-image: url(images/151.png);" />
+                </div>
+                <div
+                    class=" bg-black/70 px-10 py-1 text-white border-2 border-green-400/30 rounded-tr-[40px] rounded-bl-[40px] shadow-lg shadow-cyan-500/50">
+                    Shinu</div>
+            </div>
+        </div>
+
+        <!-- Pokemon -->
+        <div class="flex flex-row w-full justify-around items-center">
+            <!-- Player 1 -->
+            <div class="grid grid-cols-3 gap-20 rotate-[90deg]">
+                <div class="rotate-[-90deg]">
+                    <div class="h-[150px] w-[150px] bg-contain bg-no-repeat bg-center"
+                        style="background-image: url(images/135.png);transform: scaleX(-1);"> </div>
+                </div>
+         
+            </div>
+            <!-- Player 2 -->
+            <div class="grid grid-cols-3 gap-20 rotate-[90deg]">
+                <div class="flex flex-col justify-center items-center rotate-[-90deg]">
+                    <!-- can add attacker skill -->
+                    <div class="h-[50px] w-[50px] shadow-[5px_20px_40px_10px_rgba(255,0,0,0.2)] rounded-full "
+                        style="transform: scaleX(4);"></div>
+                    <div class="h-[150px] w-[150px] bg-contain bg-no-repeat bg-center"
+                        style="background-image: url(images/127.png);">
+                    </div>
+                </div>
+           
+            </div>
+        </div>
+        <!-- Player 1 -->
+        <div class="flex flex-row space-x-5 items-center text-[2rem] drop-shadow-xl">
+            <div class="h-[100px] w-[100px] rounded-full border-2 bg-contain bg-no-repeat bg-center bg-slate-900/90"
+                style="background-image: url(images/135.png);transform: scaleX(-1);"></div>
+            <div
+                class=" bg-black/70 px-10 py-1 text-white border-2 border-red-400/30 rounded-tr-[40px] rounded-bl-[40px] shadow-lg shadow-cyan-500/50">
+                Akira</div>
+            <div class="h-[100px] w-[100px] rounded-full border-2 bg-contain bg-no-repeat bg-center bg-slate-900/90"
+                style="background-image: url(images/skill/attack.png);"></div>
+                <div class="h-[100px] w-[100px] rounded-full border-2 bg-contain bg-no-repeat bg-center bg-slate-900/90"
+                style="background-image: url(images/skill/fireball.png);"></div>
+            <div class="h-[100px] w-[100px] rounded-full border-2 bg-contain bg-no-repeat bg-center bg-slate-900/90"
+                style="background-image: url(images/skill/flam.png);"></div>
+        </div>
+
+
+    </div>
+
+
+    </div>
+    </div>
+
+</body>
+
+</html>
