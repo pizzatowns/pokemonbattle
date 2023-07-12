@@ -9,6 +9,7 @@ class User
     private $user_status;
     private $user_created_on;
     private $user_login_status;
+    private $user_gold;
     public $connect;
 
     public function __construct()
@@ -17,7 +18,14 @@ class User
         $database_object = new Database_connection;
         $this->connect = $database_object->connect();
     }
-
+    function setGold($user_gold)
+    {
+        $this->user_gold = $user_gold;
+    }
+    function getGold($user_gold)
+    {
+        $this->user_gold;
+    }
     function setUserId($user_id)
     {
         $this->user_id = $user_id;
@@ -107,7 +115,27 @@ class User
 
 		$stmt = $this->connect->prepare($query);
 
-		$stmt->bind_param("ss", $this->user_login_status, $this->user_email);
+		$stmt->bind_param("ss", $this->user_login_status, $this->user_id);
+
+		if($stmt->execute())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+    }
+    function update_user_gold(){
+        $query = "
+		UPDATE pokemon.user_table 
+		SET user_gold = ?
+		WHERE user_id = ?
+		";
+
+		$stmt = $this->connect->prepare($query);
+
+		$stmt->bind_param("ss", $this->user_gold, $this->user_id);
 
 		if($stmt->execute())
 		{
@@ -120,8 +148,9 @@ class User
     }
     function save_data()
     {
-        $stmt = $this->connect->prepare("INSERT INTO pokemon.user_table (user_id, user_name, user_email, user_password, user_status, user_login_status, user_created_on) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssss",$this->user_id, $this->user_name, $this->user_email,$this->user_password, $this->user_status, $this->user_login_status,$this->user_created_on);
+        $gold = 2000;
+        $stmt = $this->connect->prepare("INSERT INTO pokemon.user_table (user_id, user_name, user_email, user_password, user_gold,  user_status, user_login_status, user_created_on) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssss",$this->user_id, $this->user_name, $this->user_email,$this->user_password,$gold, $this->user_status, $this->user_login_status,$this->user_created_on);
         $stmt->execute();
     }
 }

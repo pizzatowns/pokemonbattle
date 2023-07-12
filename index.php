@@ -2,10 +2,10 @@
 session_start();
 require_once('database/Create_database.php');
 $create_pokemon_data = new Create_database;
+
 $error = '';
 
 if (isset($_SESSION['user_data'])) {
-    $echo = 'Existed';
     header('location:home.php');
 }
 
@@ -18,8 +18,8 @@ if (isset($_POST['login'])) {
 
     $user_data = $user_obj->get_user_data_by_email();
     if ($user_data && $user_data['user_password'] == $_POST['user_password']) {
+        $user_obj->setUserId($user_data['user_id']);
         $user_obj->setUserLoginStatus('Login');
-
         if ($user_obj->update_user_login_status()) {
             $_SESSION['user_data'] = [
                 'id'    =>  $user_data['user_id'],

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require 'vendor/autoload.php';
 use Ramsey\Uuid\Uuid;
 $uuid = Uuid::uuid4()->toString();
@@ -11,12 +11,13 @@ $marylandTimeZone = new DateTimeZone('America/New_York');
 $userCreatedOn = new DateTime('now', $marylandTimeZone);
 $userCreatedOnString = $userCreatedOn->format('Y-m-d H:i:s');
 
-if (isset($_SESSION['user_data'])) {
-    header('location:home.php');
-}
+
 
 if (isset($_POST["register"])) {
-
+    session_start();
+    if (isset($_SESSION['user_data'])) {
+        header('location:home.php');
+    }
     require_once('database/Models/User.php');
     $user_obj = new User;
     
