@@ -2,6 +2,8 @@
 
 class Pokemon
 {
+    public $id;
+    public $battle_team;
     public $name;
     public $type1;
     public $type2;
@@ -20,6 +22,12 @@ class Pokemon
     {
     }
     // SETTER
+    function setId($id){
+        $this->id = $id;
+    }
+    function setBattleTeam($team){
+        $this->battle_team = $team;
+    }
     function setName($name)
     {
         $this->name = $name;
@@ -74,6 +82,12 @@ class Pokemon
     }
 
     // GETTER
+    function getBattleTeam($team){
+        $this->battle_team;
+    }
+    function getId(){
+        return $this->id;
+    }
     function getName()
     {
         return $this->name;

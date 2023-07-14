@@ -48,7 +48,6 @@ class Create_database
                     )";
         ($this->connect->query($query) === TRUE) ? "Table Created" : "";
     }
-    
     // START POKEMON_DEX SECTION
     function createPokedexTable()
     {
@@ -130,6 +129,7 @@ class Create_database
         $databaseName = "pokemon";
         $tableName = "user_dex_table";
         $query = "CREATE TABLE $databaseName.$tableName (
+            pokemon_id INT AUTO_INCREMENT PRIMARY KEY,
             user_id VARCHAR(50) NOT NULL,
             pokemon_name VARCHAR(50) NOT NULL,
             pokemon_type1 VARCHAR(50),
@@ -143,6 +143,7 @@ class Create_database
             pokemon_speed INT NOT NULL,
             pokemon_level INT NOT NULL,
             evolution_to VARCHAR(50),
+            battle_team ENUM('FALSE','TRUE') NOT NULL,
             pokemon_data LONGBLOB,
             legendary VARCHAR(50) NOT NULL
                     )";

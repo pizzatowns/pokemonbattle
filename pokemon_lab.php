@@ -21,7 +21,8 @@
                 },
                 success: function(response) {
                     var data = JSON.parse(response);
-                    let user_gold = data.user_gold;
+                    // let user_gold = data.user_gold;
+                    let user_gold = 20000;
                     if (user_gold - 2000 >= 0) {
                         user_gold -= 2000;
                         $('#medal').text(user_gold);
@@ -49,6 +50,7 @@
                             },
                             error: function(xhr, status, error) {
                                 console.error(error);
+                                console.log("NOT WORK");
                             }
                         });
                     } else {

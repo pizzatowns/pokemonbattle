@@ -14,6 +14,9 @@ $user = new User();
 $user->setUserId($user_id);
 $user_info = json_encode($user->get_user_data_by_id());
 
+$user_dex = new Userdex($user->getUserId());
+$user_dex = json_encode($user_dex->get_user_pokedex_by_id());
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +45,7 @@ $user_info = json_encode($user->get_user_data_by_id());
 
         <!-- START POKEMON CENTER SECTION -->
         <div class="flex hidden h-full w-full items-center justify-center z-30" id="pokemon_center_open">
-            <div class="flex flex-col h-[700px] w-[800px] justify-end items-center bg-black/50 rounded-[48px] drop-shadow-2xl p-5 border-2 border-red-300">
+            <div class="flex flex-col h-[800px] w-[800px] justify-end items-center bg-black/50 rounded-[48px] drop-shadow-2xl p-5 border-2 border-red-300">
                 <div class="flex w-full justify-end p-2 text-2xl cursor-pointer" id="pokemon_center_close">X</div>
                 <div class="h-full w-full" id="pokemon_center_contain"></div>
             </div>

@@ -1,8 +1,11 @@
 <div class="flex flex-row justify-end items-center p-5">
-    <div class="flex flex-row h-[50px] w-[200px] justify-center items-center bg-gradient-to-l from-violet-500/20 to-fuchsia-500 rounded-tl-full rounded-bl-full">
+    <div class="flex flex-row h-[50px] w-[250px] justify-center items-center bg-gradient-to-l from-violet-500/20 to-fuchsia-500 rounded-tl-full rounded-bl-full">
         <div class="h-[40px] w-[40px] bg-contain bg-no-repeat bg-center rounded-full cursor-pointer" style="background-image: url(images/homeImg/medal.svg);">
         </div>
         <span class="text-xl font-bold text-yellow-300" id="medal"></span>
+        <div class="h-[40px] w-[40px] bg-contain bg-no-repeat bg-center rounded-full cursor-pointer ml-3" style="background-image: url(images/homeImg/power.svg);">
+        </div>
+        <span class="text-xl font-bold text-yellow-300" id="power"></span>
     </div>
     <div class="h-[75px] w-[75px] bg-contain bg-no-repeat bg-center" style="background-image: url(images/homeImg/4.svg);">
     </div>
@@ -29,7 +32,16 @@
 <script>
     $(document).ready(function() {
         let user_info = <?php echo $user_info; ?>;
+        let user_dex = <?php echo $user_dex; ?>;
+        let power = user_dex.reduce((accumulator, object) => {
+            if (object.battle_team == "TRUE"){
+               return accumulator + object.total;
+            }
+            return accumulator + 0;
+        }, 0);
+
         $('#medal').text(user_info.user_gold);
+        $('#power').text(power);
         $("#setting").click(() => {
             $("#setting_board").removeClass('hidden');
         });

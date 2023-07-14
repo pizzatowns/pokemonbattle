@@ -41,7 +41,14 @@ if (isset($_GET['data'])){
             echo $jsuser_pokemon_dex;
             break;
         default:
-        echo json_encode(['status'=>-1]);
+            echo json_encode(['status'=>-1]);
         break;
     }
+}
+
+if (isset($_POST['data'])== 'update_battle_team'){
+    $data = json_decode($_POST['battle_team'], true);
+    $user_dex->resetBattleTeam();
+    $user_dex->update_battle_team($data);
+
 }
