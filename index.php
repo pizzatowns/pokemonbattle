@@ -47,6 +47,10 @@ if (isset($_POST['login'])) {
 
 <body>
     <div class="flex h-screen w-screen justify-center items-center bg-cover bg-no-repeat bg-center" style="background-image: url(images/wallpaper/login.jpg)">
+
+      <!-- added audio here-->
+      <audio loop style="color: white;" src="./database/file/audio_files/opening.mp3" id="opening-audio"></audio>
+
         <div class="flex flex-col h-[500px] w-[500px] bg-black/70 rounded-[48px] border-2 border-black/20 drop-shadow-2xl text-white">
             <div class="flex flex-col text-center h-[80px] w-full font-bold text-2xl rounded-tr-[48px] rounded-tl-[48px] justify-center items-center bg-white/80 tracking-widest drop-shadow-2xl text-black">
                 <span>LOGIN</span> <span class="text-sm text-red-400"><?php echo $error; ?></span>
@@ -81,6 +85,17 @@ if (isset($_POST['login'])) {
     <script type="text/javascript">
         $('#register_form').parsley();
     </script>
+
+       <script>
+        document.getElementById('user_email').addEventListener('click', (event) => {
+            setTimeout(() => {
+                document.getElementById("opening-audio").play();
+            }, 1000);
+        })
+     
+     </script>
+
+       
 </body>
 
 </html>
