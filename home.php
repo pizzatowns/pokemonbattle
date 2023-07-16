@@ -38,7 +38,13 @@ $user_dex = json_encode($user_dex->get_user_pokedex_by_id());
         <!-- Level and User Name go here , HEADER--SECTION -->
         <?php include 'header.php'; ?>
         <!-- DUEGON GO HEAR -->
-        <?php include 'duegon.php'; ?>
+        <div class="absolute bottom-[300px] left-[300px] h-[400px] w-[300px] shadow-inner" id="go_to_duegon">
+            <div class="flex flex-col h-full w-full justify-center items-center">
+                <span class="text-xl mb-5 bg-red-900/50 px-5 rounded-[48px]">Duegon</span>
+                <div class="h-[300px] w-[300px] rounded-full scale-x-50 shadow-[-10px_-5px_40px_0px_rgba(0,0,0,250)] bg-cover bg-no-repeat bg-center rounded-full cursor-pointer" style="background-image: url(images/homeImg/duegon_gate.gif);" name="setting" id="setting">
+                </div>
+            </div>
+        </div>
         <!-- START POKEMON LAB SECTION -->
         <?php include 'pokemon_lab.php' ?>
         <!-- END POKEMON LAB SECTION -->
@@ -59,7 +65,6 @@ $user_dex = json_encode($user_dex->get_user_pokedex_by_id());
             var divElement = $("#home_div");
             var divHeight = divElement.height();
             var divWidth = divElement.width();
-
             // START IMPORT HOUSE LOCATION
             const house_map = [{
                     id: "pokemon_lab",
@@ -134,6 +139,12 @@ $user_dex = json_encode($user_dex->get_user_pokedex_by_id());
 
             })
             // -------------------------END POKEMONCENTER------------------------
+
+
+            // -------------------------GO_TO_DUEGON------------------------
+            $('#go_to_duegon').click(() => {
+                window.location.href = "duegon_map.php";
+            })
         });
     </script>
 </body>

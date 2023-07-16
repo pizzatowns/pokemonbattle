@@ -1,6 +1,6 @@
 <?php
 
-class Pokemon
+class Pokemon implements JsonSerializable
 {
     public $id;
     public $battle_team;
@@ -139,5 +139,25 @@ class Pokemon
     function getLegendary()
     {
        return $this->legendary;
+    }
+    public function jsonSerialize()
+    {
+        return [
+            'id' => $this->id,
+            'battle_team' => $this->battle_team,
+            'name' => $this->name,
+            'type1' => $this->type1,
+            'type2' => $this->type2,
+            'total' => $this->total,
+            'hp' => $this->hp,
+            'atk' => $this->atk,
+            'def' => $this->def,
+            'spatk' => $this->spatk,
+            'spdef' => $this->spdef,
+            'speed' => $this->speed,
+            'data' => $this->data,
+            'legendary' => $this->legendary,
+            'level' => $this->level,
+        ];
     }
 }

@@ -33,17 +33,22 @@
     $(document).ready(function() {
         let user_info = <?php echo $user_info; ?>;
         let user_dex = <?php echo $user_dex; ?>;
-        let power = user_dex.reduce((accumulator, object) => {
-            if (object.battle_team == "TRUE"){
-               return accumulator + object.total;
-            }
-            return accumulator + 0;
-        }, 0);
+        let power = 0;
+        if (user_dex) {
+            power = user_dex.reduce((accumulator, object) => {
+                if (object.battle_team == "TRUE") {
+                    return accumulator + object.total;
+                }
+                return accumulator + 0;
+            }, 0);
+        }
+
 
         $('#medal').text(user_info.user_gold);
         $('#power').text(power);
         $("#setting").click(() => {
             $("#setting_board").removeClass('hidden');
+            console.log("work");
         });
         $("#close_setting").click(() => {
             $("#setting_board").addClass('hidden');

@@ -1,6 +1,7 @@
 <?php 
 require 'database/Models/User.php';
 require 'database/Models/Userdex.php';
+require 'database/Models/Duegon.php';
 require_once('database/Database_connection.php');
 
 session_start();
@@ -14,10 +15,9 @@ $user_id = $user_data['id'];
 
 $user_dex = new Userdex($user_id);
 $user = new User();
-
 $user->setUserId($user_id);
 
-
+$duegon = new Duegon();
 
 if (isset($_GET['data'])){
     switch ($_GET['data']) {
@@ -39,6 +39,12 @@ if (isset($_GET['data'])){
             $user_pokemon_dex = $user_dex->get_user_pokedex_by_id();
             $jsuser_pokemon_dex = json_encode($user_pokemon_dex); 
             echo $jsuser_pokemon_dex;
+            break;
+        case "get_duegon_map":
+            $duegon_map_data = $duegon->getDuegonMap();
+            echo json_encode($duegon_map_data);
+            // $response = array('map' => $duegon_map_data, 'id' => 1);
+            // echo json_encode($duegon_map_data);
             break;
         default:
             echo json_encode(['status'=>-1]);

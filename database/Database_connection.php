@@ -5,7 +5,7 @@ class Database_connection {
         $servername = "localhost";
         $username = "root";
         $password = "";
-        // Create a connection
+        // Create a connection\
         $connect = new mysqli($servername, $username, $password);
 
         if ($connect->connect_error) {

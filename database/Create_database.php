@@ -30,6 +30,7 @@ class Create_database
             $this->createUserTable();
             $this->createPokedexTable();
             $this->createUserDexTable();
+            $this->createDuegonMap();
         }
     }
     function createUserTable()
@@ -125,7 +126,8 @@ class Create_database
     // END POKE_DEX SECTION
 
     // START USER_DEX SECTION
-    function createUserDexTable(){
+    function createUserDexTable()
+    {
         $databaseName = "pokemon";
         $tableName = "user_dex_table";
         $query = "CREATE TABLE $databaseName.$tableName (
@@ -150,6 +152,21 @@ class Create_database
         ($this->connect->query($query) === TRUE) ? "Table Created" : "";
     }
     // END USER_DEX SECTION
-
-
+    function createDuegonMap()
+    {
+        $databaseName = "pokemon";
+        $tableName = "duegon_map_table";
+        $query = "CREATE TABLE $databaseName.$tableName (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            state_num INT NOT NULL,
+            state_map JSON 
+                    )";
+        ($this->connect->query($query) === TRUE) ? "Table Created" : "";
+        $this->generateMap();
+    }
+    function generateMap(){
+        require_once('database/Models/Duegon.php');
+        $duegonObj = new Duegon();
+        $duegonObj->generateDuegon();
+    }
 }
