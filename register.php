@@ -67,6 +67,9 @@ if (isset($_POST["register"])) {
 
 <body>
     <div class="flex h-screen w-screen justify-center items-center bg-cover bg-no-repeat bg-center" style="background-image: url(images/wallpaper/register.jpg)">
+            <!-- added audio here-->
+         <audio loop style="color: white;" src="./database/file/audio_files/opening.mp3" id="opening-audio"></audio>
+
         <div class="flex flex-col h-[500px] w-[500px] bg-black/70 rounded-[48px] border-2 border-black/20 drop-shadow-2xl text-white">
             <div class="flex flex-col h-[80px] w-full font-bold text-2xl rounded-tr-[48px] rounded-tl-[48px] justify-center items-center bg-white/80 tracking-widest drop-shadow-2xl text-black">
                 <span>REGISTER</span>
@@ -76,7 +79,7 @@ if (isset($_POST["register"])) {
             <div class="flex flex-col h-[420px] w-full justify-center p-5">
                 <form method="post" id="register_form">
                     <div class="flex flex-col space-y-2 mb-3">
-                        <label>Enter Your Name</label>
+                        <label >Enter Your Name</label>
                         <input class="rounded-xl text-black px-2" type="text" name="user_name" id="user_name" class="form-control" data-parsley-pattern="/^[a-zA-Z\s]+$/" required />
                     </div>
 
@@ -108,6 +111,15 @@ if (isset($_POST["register"])) {
     <script type="text/javascript">
         $('#register_form').parsley();
     </script>
+
+    <script>
+        document.getElementById('user_name').addEventListener('click', (event) => {
+            setTimeout(() => {
+                document.getElementById("opening-audio").play();
+            }, 1000);
+        })
+     
+     </script>
 </body>
 
 </html>
