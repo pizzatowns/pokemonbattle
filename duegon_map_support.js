@@ -46,28 +46,28 @@ export function random_enemy_on_map(x, y, value, index) {
     </div>`);
 }
 
-export function player_html(index, bottom, left, img_url) {
+export function player_html(index, bottom, left, img_url, hp) {
   return `<div id="player_poke_${index}"  class="absolute h-[120px] w-[100px] bottom-[${bottom}px] left-[${left}px] cursor-pointer">
     <div class="flex flex-col h-full w-full justify-between items-center">  
         <div class="h-[100px] w-[100px] bg-contain bg-no-repeat bg-center -scale-x-100" style="background-image: url(${img_url})"></div>
         <div class="relative h-[18px] w-[100px] rounded-full">
               <div class="absolute top-0 left-0 h-full w-full bg-red-500 rounded-full"></div>
               <div class="absolute top-0 left-0 h-full w-[100px] z-10 bg-green-500 rounded-full" ></div>
-              <div class="absolute -top-[3px] left-0 h-full w-full z-20 rounded-full text-small font-bold">HP:100</div>
+              <div class="absolute -top-[3px] left-[5px] h-full w-full z-20 rounded-full text-small font-bold">HP:${hp}</div>
         </div>
   </div>
 </div>`;
 }
 
-export function enemy_html(index, top, right, img_url) {
+export function enemy_html(index, top, right, img_url, hp) {
   return `<div id="enemy_poke_${index}"  class="absolute h-[120px] w-[100px] top-[${top}px] right-[${right}px] cursor-pointer">
     <div class="flex flex-col h-full w-full justify-between items-center">     
         <div class="h-[100px] w-[100px] bg-contain bg-no-repeat bg-center"
             style="background-image: url(${img_url})"></div>
             <div class="relative h-[18px] w-[100px] rounded-full">
                 <div class="absolute top-0 lef-0 h-full w-full bg-red-500 rounded-full"></div>
-                <div class="absolute top-0 lef-0 h-full w-[100px] z-10 bg-green-500 rounded-full" ></div>
-                <div class="absolute -top-[3px] left-0 h-full w-full z-20 rounded-full text-small font-bold">HP:100</div>
+                <div id="enemy_poke_${index}_hp_bar" class="absolute top-0 lef-0 h-full w-[100px] z-10 bg-green-500 rounded-full" ></div>
+                <div id="enemy_poke_${index}_hp_number" class="absolute -top-[3px] left-[5px] h-full w-full z-20 rounded-full text-small font-bold">HP:${hp}</div>
             </div>
     </div>
 </div>`;

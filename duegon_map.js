@@ -14,33 +14,44 @@ const battle = (player_atk, player_def) => {
   let defender = player_def;
   let spAtkNum = dms.random_spc();
   let spDefNum = dms.random_spc();
-  let atk;
-  let def;
+  let atk = attacker.atk;
+  let def = defender.def;
   let damge;
   let percentageHp;
-  let hp = player_def.hp;
+  let hp = defender.hp;
 
-  atk = spAtkNum == 2 ? player_atk.spatk : player_atk.atk;
-  def = spDefNum == 2 ? player_def.spdef : player_def.def;
-
-  damge = atk - def;
-  hp = hp <= damge ? 0 : hp - damge;
-  percentageHp = (damge * 100) / hp;
+  atk = spAtkNum == 2 ? (Math.ceil(atk + attacker.spatk * 0.2)) : atk;
+  def = spDefNum == 2 ? (Math.ceil(def + defender.spdef * 0.2)) : def;
+  console.log(atk);
+  console.log(def);
+  damge = atk - def
+  if (damge > 0){
+    hp -= damge;
+    if (hp <= 0) {
+      hp = 0;
+    }
+  }else{
+    damge = 0;
+  }
   defender.hp = hp;
+  return {id: defender.id, hp: defender.hp}
 };
 
-// const start_battle = () => {
-//   console.log(player_atk);
-//   console.log(player_def);
-//   // battle(player_atk, player_def);
-// };
+
 
 
 $(document).ready(function () {
   $('#normal_atk').click(()=>{
-    console.log('====================================');
-    console.log(player_atk);
-    console.log('====================================');
+    let result = battle(player_atk, player_def);
+    if (battle_turn % 2 != 0){
+      let player_origin_hp = result_defender_stat.filter((item) => item.id == result.id)[0].hp;
+      let hp_after_damage = result.hp;
+      let percentageHpLoss = (hp_after_damage/player_origin_hp) * 100;
+      let hpLeft = 100 - (100 - percentageHpLoss);
+      
+      $("#enemy_poke_" +result.id+"_hp_bar").css("width", hpLeft+"px");
+      $("#enemy_poke_" +result.id+"_hp_number").text("HP: " + hp_after_damage);
+    }
   })
 
   function processPlayerData(user_data) {
@@ -58,6 +69,7 @@ $(document).ready(function () {
       let enemy_coordination = dms.team_coordinate("enemy");
       // SET POKE FOR PLAYER AND ENEMY
       let player_poke = user_data;
+      result_attacker_stat = JSON.parse(JSON.stringify(user_data));
       let enemy_poke;
 
       duegon_data.map((value, index) => {
@@ -69,7 +81,7 @@ $(document).ready(function () {
         $("#map" + index).click(() => {
           enemy_poke = value.state_pokemons;
           if (battle_start == false) {
-            result_defender_stat = value.state_pokemons;
+            result_defender_stat =JSON.parse(JSON.stringify(value.state_pokemons));
           }
           $("#player").empty();
           $("#enemy").empty();
@@ -89,11 +101,11 @@ $(document).ready(function () {
             $("#player").append(player_html);
             // PLAYER ACTION START HERE //
             $("#player_poke_" + id).click(() => {
-              $('[id^="player_poke_"]').removeClass("drop-shadow-[0px_5px_10px_rgba(45,242,0,0.8)]");
-              $("#player_poke_" + id).addClass('drop-shadow-[0px_5px_10px_rgba(45,242,0,0.8)]');
               let poke = player_poke[index];
               if (battle_start) {
                 battle_turn % 2 == 0 ? (player_def = poke) : (player_atk = poke);
+                $('[id^="player_poke_"]').removeClass("drop-shadow-[0px_5px_10px_rgba(45,242,0,0.8)]");
+                $("#player_poke_" + id).addClass('drop-shadow-[0px_5px_10px_rgba(45,242,0,0.8)]');
               }
             });
           });
@@ -113,11 +125,11 @@ $(document).ready(function () {
 
             // ENEMY ACTION HERE START HERE //
             $("#enemy_poke_" + id).click(() => {
-              $('[id^="enemy_poke_"]').removeClass("drop-shadow-[0px_5px_10px_rgba(242,25,0,0.8)]");
-              $("#enemy_poke_" + id).addClass('drop-shadow-[0px_5px_10px_rgba(242,25,0,0.8)]');
               let poke = enemy_poke[index];
               if (battle_start) {
                 battle_turn % 2 != 0 ? (player_def = poke) : (player_atk = poke);
+                $('[id^="enemy_poke_"]').removeClass("drop-shadow-[0px_5px_10px_rgba(242,25,0,0.8)]");
+                $("#enemy_poke_" + id).addClass('drop-shadow-[0px_5px_10px_rgba(242,25,0,0.8)]');
               }
             });
           });
