@@ -140,7 +140,7 @@ class Userdex
                 $pokemonObj->setLevel(0);
                 $pokemonObj->setLegendary($row['legendary']);
                 if ($row['battle_team'] == 'TRUE') {
-                    $this->setPower($row['total']);
+                    $this->setPower($row['pokemon_total']);
                     $this->battle_team[] = $pokemonObj;
                 }
                 $this->pokedex[] = $pokemonObj;
